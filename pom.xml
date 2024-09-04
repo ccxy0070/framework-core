@@ -1,0 +1,576 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.jzfyjt.framework</groupId>
+	<artifactId>framework-core</artifactId>
+	<packaging>pom</packaging>
+	<version>1.0.14-RELEASE</version>
+	<name>framework-core</name>
+	<description>core project for framework-core</description>
+	<modules>
+		<module>framework-core-util</module>
+		<module>framework-core-base</module>
+		<module>framework-core-datasource</module>
+		<module>framework-core-swagger</module>
+		<module>framework-core-mq</module>
+		<module>framework-core-redis</module>
+		<module>framework-core-log</module>
+		<module>framework-core-store</module>
+		<module>framework-core-dhtmlx</module>
+	</modules>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+		<!-- framework.core -->
+		<framework.core.version>1.0.14-RELEASE</framework.core.version>
+
+		<!-- mybatis/DB -->
+		<mybatis-spring-boot-starter.version>2.2.2</mybatis-spring-boot-starter.version>
+		<mapper-spring-boot-starter.version>4.2.1</mapper-spring-boot-starter.version>
+		<pagehelper-spring-boot-starter.version>1.4.2</pagehelper-spring-boot-starter.version>
+		<druid-spring-boot-starter.version>1.2.8</druid-spring-boot-starter.version>
+		<mysql-connector-java.version>8.0.28</mysql-connector-java.version>
+		<ojdbc8.version>12.2.0.1</ojdbc8.version>
+
+		<!-- transactions -->
+		<spring-boot-starter-jta-atomikos.version>2.5.3</spring-boot-starter-jta-atomikos.version>
+		<atomikos.transactions.version>5.0.9</atomikos.transactions.version>
+		<jakarta.transaction-api.version>2.0.0</jakarta.transaction-api.version>
+		<javax.transaction-api.version>1.3</javax.transaction-api.version>
+		<seata.version>1.4.2</seata.version>
+		
+		<!-- rocketmq -->
+		<rocketmq-client.version>4.9.2</rocketmq-client.version>
+		<rocketmq-common.version>4.9.2</rocketmq-common.version>
+		<rocketmq-spring-boot-starter.version>2.2.1</rocketmq-spring-boot-starter.version>
+
+		<!-- swagger 暂时不可升级 包含 swagger/validator-->
+		<swagger-bootstrap-ui.version>1.9.6</swagger-bootstrap-ui.version>
+		<springfox-swagger2.version>2.9.2</springfox-swagger2.version>
+		<swagger-models.version>1.6.2</swagger-models.version>
+		<hibernate-validator.version>6.2.0.Final</hibernate-validator.version>
+		
+		<!-- spring framework -->
+		<spring-boot-starter.version>2.5.2</spring-boot-starter.version>
+		<spring-webmvc.version>5.3.18</spring-webmvc.version>
+		<spring-beans.version>5.3.18</spring-beans.version>
+		<spring-cloud-dependencies.version>2020.0.5</spring-cloud-dependencies.version>
+		
+		<!-- jjwt -->
+		<jjwt.version>0.9.1</jjwt.version>
+		<java-jwt.version>3.19.1</java-jwt.version>
+		<!-- hutool -->
+		<hutool-all.version>5.7.22</hutool-all.version>
+		<!-- fastjson -->
+		<fastjson.version>1.2.80</fastjson.version>	
+		<!-- commons-io -->
+		<commons-io.version>2.11.0</commons-io.version>
+		<!-- commons-lang3 -->
+		<commons-lang3.version>3.12.0</commons-lang3.version>
+		<!-- redis -->
+		<jedis.version>3.8.0</jedis.version>
+
+		<jaxb-api.version>2.4.0-b180830.0359</jaxb-api.version>
+		<jaxb-impl.version>3.0.2</jaxb-impl.version>
+		<jaxb-core.version>3.0.2</jaxb-core.version>
+		<servlet-api.version>4.0.1</servlet-api.version>
+		<snakeyaml.version>1.30</snakeyaml.version>
+		<aspectj.version>1.9.9.1</aspectj.version>
+		<jackson-databind.version>2.13.2.2</jackson-databind.version>
+		<jackson-bom.version>2.13.2.20220328</jackson-bom.version>
+		<freemarker.version>2.3.31</freemarker.version>
+		<slf4j-api.version>2.0.0-alpha7</slf4j-api.version>
+		<gson.version>2.9.0</gson.version>
+		<guava.version>31.1-jre</guava.version>
+		<activation.version>1.1.1</activation.version>
+		<pinyin4j.version>2.5.1</pinyin4j.version>
+		
+		<!-- store -->
+		<smbj.version>0.11.5</smbj.version>
+		<thumbnailator.version>0.4.17</thumbnailator.version>
+		
+		<java.version>11</java.version>
+	</properties>
+
+	<!-- 将项目打包上传到nexus私服 
+	<distributionManagement>
+		<repository>
+			<id>nexus-releases</id>
+			<name>Nexus Release Repository</name>
+			<url>http://10.1.0.12:8081/repository/maven-releases/</url>
+		</repository>
+		<snapshotRepository>
+			<id>nexus-snapshots</id>
+			<name>Nexus Snapshot Repository</name>
+			<url>http://10.1.0.12:8081/repository/maven-snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
+-->
+	<!-- 配置远程仓库
+	<repositories>
+		<repository>
+			<id>nexus-public</id>
+			<name>Nexus Public Repository</name>
+			<url>http://10.1.0.12:8081/repository/maven-public/</url>
+			<layout>default</layout>
+			<releases>
+				<enabled>true</enabled>
+				<updatePolicy>always</updatePolicy>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+				<updatePolicy>always</updatePolicy>
+			</snapshots>
+		</repository>
+	</repositories>
+	 -->
+	<!-- 用来配置maven插件的远程仓库 
+	<pluginRepositories>
+		<pluginRepository>
+			<id>nexus</id>
+			<name>Nexus Repository</name>
+			<url>http://10.1.0.12:8081/repository/maven-public/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			snapshots默认是关闭的,需要开启 
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</pluginRepository>
+	</pluginRepositories>
+	-->
+	<!-- jar包的版本管理 -->
+	<dependencyManagement>
+
+		<dependencies>
+
+			<dependency>
+				<groupId>com.jzfyjt.framework</groupId>
+				<artifactId>framework-core-base</artifactId>
+				<version>${framework.core.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.jzfyjt.framework</groupId>
+				<artifactId>framework-core-datasource</artifactId>
+				<version>${framework.core.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.jzfyjt.framework</groupId>
+				<artifactId>framework-core-mq</artifactId>
+				<version>${framework.core.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.jzfyjt.framework</groupId>
+				<artifactId>framework-core-redis</artifactId>
+				<version>${framework.core.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.jzfyjt.framework</groupId>
+				<artifactId>framework-core-swagger</artifactId>
+				<version>${framework.core.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.jzfyjt.framework</groupId>
+				<artifactId>framework-core-util</artifactId>
+				<version>${framework.core.version}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>com.jzfyjt.framework</groupId>
+				<artifactId>framework-core-store</artifactId>
+				<version>${framework.core.version}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>com.jzfyjt.framework</groupId>
+				<artifactId>framework-core-dhtmlx</artifactId>
+				<version>${framework.core.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>javax.servlet-api</artifactId>
+				<version>${servlet-api.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-configuration-processor</artifactId>
+				<optional>true</optional>
+				<version>${spring-boot-starter.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-beans</artifactId>
+				<version>${spring-beans.version}</version>
+			</dependency>
+
+
+			<dependency>
+				<groupId>org.yaml</groupId>
+				<artifactId>snakeyaml</artifactId>
+				<version>${snakeyaml.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.aspectj</groupId>
+				<artifactId>aspectjrt</artifactId>
+				<version>${aspectj.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.aspectj</groupId>
+				<artifactId>aspectjweaver</artifactId>
+				<version>${aspectj.version}</version>
+			</dependency>
+
+			<!-- 		
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-jta-atomikos</artifactId>
+				<version>${spring-boot-starter-jta-atomikos.version}</version>
+			</dependency> 
+			-->
+	
+			<dependency>
+				<groupId>com.atomikos</groupId>
+				<artifactId>transactions-jms</artifactId>
+				<version>${atomikos.transactions.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.atomikos</groupId>
+				<artifactId>transactions-jta</artifactId>
+				<version>${atomikos.transactions.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.atomikos</groupId>
+				<artifactId>transactions-jdbc</artifactId>
+				<version>${atomikos.transactions.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>jakarta.transaction</groupId>
+				<artifactId>jakarta.transaction-api</artifactId>
+				<version>${jakarta.transaction-api.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>javax.transaction</groupId>
+				<artifactId>javax.transaction-api</artifactId>
+				<version>${javax.transaction-api.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>javax.xml.bind</groupId>
+				<artifactId>jaxb-api</artifactId>
+				<version>${jaxb-api.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.sun.xml.bind</groupId>
+				<artifactId>jaxb-impl</artifactId>
+				<version>${jaxb-impl.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.sun.xml.bind</groupId>
+				<artifactId>jaxb-core</artifactId>
+				<version>${jaxb-core.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>javax.activation</groupId>
+				<artifactId>activation</artifactId>
+				<version>${activation.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.freemarker</groupId>
+				<artifactId>freemarker</artifactId>
+				<version>${freemarker.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>${slf4j-api.version}</version>
+			</dependency>
+
+			<!-- 数据库连接池 -->
+			<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>druid-spring-boot-starter</artifactId>
+				<version>${druid-spring-boot-starter.version}</version>
+			</dependency>
+
+			<!--spring-boot 通用Mapper -->
+			<dependency>
+				<groupId>tk.mybatis</groupId>
+				<artifactId>mapper-spring-boot-starter</artifactId>
+				<version>${mapper-spring-boot-starter.version}</version>
+			</dependency>
+
+			<!--spring-boot 分页插件 -->
+			<dependency>
+				<groupId>com.github.pagehelper</groupId>
+				<artifactId>pagehelper-spring-boot-starter</artifactId>
+				<version>${pagehelper-spring-boot-starter.version}</version>
+			</dependency>
+			<!--mybatis springboot整合包 -->
+			<dependency>
+				<groupId>org.mybatis.spring.boot</groupId>
+				<artifactId>mybatis-spring-boot-starter</artifactId>
+				<version>${mybatis-spring-boot-starter.version}</version>
+			</dependency>
+
+			<!-- oracle -->
+			<dependency>
+				<groupId>com.oracle.database.jdbc</groupId>
+				<artifactId>ojdbc8</artifactId>
+				<version>${ojdbc8.version}</version>
+			</dependency>
+
+	<dependency>
+			<groupId>oracle</groupId>
+			<artifactId>ojdbc12</artifactId>
+		</dependency>
+			<!-- mysql -->
+			<dependency>
+				<groupId>mysql</groupId>
+				<artifactId>mysql-connector-java</artifactId>
+				<version>${mysql-connector-java.version}</version>
+			</dependency>
+
+			<!-- rocketmq -->
+			<dependency>
+				<groupId>org.apache.rocketmq</groupId>
+				<artifactId>rocketmq-client</artifactId>
+				<version>${rocketmq-client.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.rocketmq</groupId>
+				<artifactId>rocketmq-spring-boot-starter</artifactId>
+				<version>${rocketmq-spring-boot-starter.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.rocketmq</groupId>
+				<artifactId>rocketmq-common</artifactId>
+				<version>${rocketmq-common.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring-cloud-dependencies.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-web</artifactId>
+				<version>${spring-boot-starter.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-webmvc</artifactId>
+				<version>${spring-webmvc.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-data-redis</artifactId>
+				<version>${spring-boot-starter.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>redis.clients</groupId>
+				<artifactId>jedis</artifactId>
+				<version>${jedis.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.fasterxml.jackson.core</groupId>
+				<artifactId>jackson-databind</artifactId>
+				<version>${jackson-databind.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.belerweb</groupId>
+				<artifactId>pinyin4j</artifactId>
+				<version>${pinyin4j.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>io.jsonwebtoken</groupId>
+				<artifactId>jjwt</artifactId>
+				<version>${jjwt.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>cn.hutool</groupId>
+				<artifactId>hutool-all</artifactId>
+				<version>${hutool-all.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.google.code.gson</groupId>
+				<artifactId>gson</artifactId>
+				<version>${gson.version}</version>
+			</dependency>
+
+			<dependency>
+			    <groupId>com.google.guava</groupId>
+			    <artifactId>guava</artifactId>
+			    <version>${guava.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>fastjson</artifactId>
+				<version>${fastjson.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>io.springfox</groupId>
+				<artifactId>springfox-swagger2</artifactId>
+				<version>${springfox-swagger2.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>io.springfox</groupId>
+				<artifactId>springfox-swagger-ui</artifactId>
+				<version>${springfox-swagger2.version}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>io.swagger</groupId>
+				<artifactId>swagger-models</artifactId>
+				<version>${swagger-models.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.github.xiaoymin</groupId>
+				<artifactId>swagger-bootstrap-ui</artifactId>
+				<version>${swagger-bootstrap-ui.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>io.springfox</groupId>
+				<artifactId>springfox-bean-validators</artifactId>
+				<version>${springfox-swagger2.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.hibernate.validator</groupId>
+				<artifactId>hibernate-validator</artifactId>
+				<version>${hibernate-validator.version}</version>
+			</dependency>
+
+			<dependency>
+			    <groupId>org.glassfish</groupId>
+			    <artifactId>jakarta.el</artifactId>
+			    <version>${jakarta.el.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.auth0</groupId>
+				<artifactId>java-jwt</artifactId>
+				<version>${java-jwt.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>commons-io</groupId>
+				<artifactId>commons-io</artifactId>
+				<version>${commons-io.version}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-lang3</artifactId>
+				<version>${commons-lang3.version}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>com.fasterxml.jackson</groupId>
+				<artifactId>jackson-bom</artifactId>
+				<version>${jackson-bom.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>com.hierynomus</groupId>
+				<artifactId>smbj</artifactId>
+				<version>${smbj.version}</version>
+			</dependency>
+	
+			<dependency>
+				<groupId>net.coobird</groupId>
+				<artifactId>thumbnailator</artifactId>
+				<version>${thumbnailator.version}</version>
+			</dependency>
+		
+			<!-- 
+			<dependency>
+				<groupId>com.alibaba.cloud</groupId>
+				<artifactId>spring-cloud-starter-alibaba-seata</artifactId>
+				<version>2021.1</version>
+				<exclusions>
+                <exclusion>
+                    <groupId>io.seata</groupId>
+                    <artifactId>seata-all</artifactId>
+                </exclusion>
+            </exclusions>
+			</dependency>
+			<dependency>
+				<groupId>io.seata</groupId>
+				<artifactId>seata-all</artifactId>
+				<version>${seata.version}</version>
+			</dependency> 
+			-->
+
+		</dependencies>
+	</dependencyManagement>
+	<build>
+		<plugins>
+		            <!-- 设置Maven编译器插件 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>11</source><!-- 这里设置为所需的JDK版本号 -->
+                    <target>11</target><!-- 同样地，也要将此处设置为相应的JDK版本号 -->
+                </configuration>
+            </plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>3.0.0-M5</version>
+				<configuration>
+					<skipTests>true</skipTests>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>3.0.1</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>
