@@ -1,7 +1,7 @@
 # framework-core
 
 @project 核心组件父项目
-@author 张小永
+@author zhangxy
 
 
 2021-11-10 升级相关组件版本,发布1.0.4-RELEASE版本
